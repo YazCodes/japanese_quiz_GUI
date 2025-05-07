@@ -1,5 +1,6 @@
 import tkinter as tk
 import random  
+import tkinter.font as tkFont
 
 vocab = [
     {"word": "いぬ",  "meaning": "dog", "options": ["dog","cat","bird"]},
@@ -23,13 +24,15 @@ random.shuffle(options)  # shuffles the order of the options in list - options �
 root = tk.Tk()
 root.title("Japanesse Vocab Quiz")
 root.geometry("300x250")
+root['background']= "#9ff553"
+
+heading_label = tk.Label(root, text="Let's Practice!", fg="#F4C2C2", font=("Arial", 14, "bold",))  # come back to this later!
 
 question_label = tk.Label(root, text=f"What does '{item['word']}' mean?", font=("Arial", 14))
 question_label.pack(pady=20)
 
 feedback_label = tk.Label(root, text="", font=("Arial", 12))
 feedback_label.pack(pady=10)
-
 
 #Checking answer
 def check_answer(selected_option):
@@ -42,6 +45,22 @@ def check_answer(selected_option):
 for option in item["options"]:
     button = tk.Button(root, text=option, width=20, command=lambda opt=option: check_answer(opt))
     button.pack(pady=5)
+
+def button_click():
+    print("Button Clicked!")
+
+button = tk.Button(
+    root,
+    text="Next",
+    command=button_click,
+    font=("Arial", 12),
+    fg="#F4C2C2",
+    bg="#9ff553",
+    padx=15,
+    pady=8,
+    relief=tk.RAISED,
+)
+button.pack()
 
 root.mainloop()
 
